@@ -9,41 +9,48 @@
 </head>
 <body>
 
-  <script type="text/x-handlebars">
+
     <h2>JemmyDucks</h2>
 
     <div class="row">
-      <div class="col-md-3" id="tables">Tables</div>
-      <div class="col-md-4" id="selections">Selections</div>
-      <div class="col-md-5">Current Table</div>
+      <script type="text/x-handlebars" id="tables">
+        <div class="col-md-3">
+          <h3>Tables</h3>
+
+            <div class="btn-group-vertical btn-group-lg">
+              {{#each}}
+                <button type="button" class="btn btn-info">{{number}}</button>
+              {{/each}}
+              </div>
+              <br>
+              <br>
+
+            {{input type="text" id="new-table" placeholder="Add a new table" value=newNumber action="createTable"}}
+        </div>
+      </script>
+
+      <script type="text/x-handlebars" id="selections">
+        <div class="col-md-4">
+          <h3>Selections</h3>
+
+          <ul>
+            {{#each}}
+              <li>
+                <label>{{title}}</label>
+              </li>
+            {{/each}}
+          </ul>
+        </div>
+      </script>
+
+      <script type="text/x-handlebars">
+        <div class="col-md-5">
+          <h3>Current Table</h3>
+            {{outlet}}
+        </div>
+      </script>
+
     </div>
-
-    {{outlet}}
-
-  </script>
-
-
-  <script type="text/x-handlebars" id="tables">
-    <div class="btn-group-vertical btn-group-lg">
-    {{#each}}
-      <button type="button" class="btn btn-info">{{number}}</button>
-    {{/each}}
-    </div>
-    <br>
-    <br>
-    {{input type="text" id="new-table" placeholder="Add a new table" value=newNumber action="createTable"}}
-  </script>
-
-  <script type="text/x-handlebars" id="selections">
-    <ul>
-      {{#each}}
-        <li>
-          <label>{{title}}</label>
-        </li>
-      {{/each}}
-    </ul>
-  </script>
-
 
 
   <script src="js/libs/jquery-1.10.2.js"></script>
