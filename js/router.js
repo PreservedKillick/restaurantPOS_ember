@@ -7,6 +7,11 @@ Restaurants.Router.map(function(){
   });
 });
 
+Restaurants.IndexRoute = Ember.Route.extend({
+  redirect: function(){
+    this.transitionTo('tables');
+  }
+});
 
 Restaurants.TablesRoute = Ember.Route.extend({
   model: function() {

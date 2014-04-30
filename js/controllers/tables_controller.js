@@ -1,4 +1,6 @@
 Restaurants.TablesController = Ember.ArrayController.extend({
+  sortProperties: ['number'],
+  sortAscending: true,
   actions: {
     createTable: function() {
       var number = this.get('newNumber');
