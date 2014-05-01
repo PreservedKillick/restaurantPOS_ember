@@ -1,5 +1,7 @@
 
 Restaurants.Table = DS.Model.extend({
+  selections: DS.hasMany('selection'),
+
   number: DS.attr('number')
 });
 

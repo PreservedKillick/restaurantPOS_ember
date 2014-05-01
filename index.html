@@ -25,23 +25,26 @@
 
   <script type="text/x-handlebars" id="tables">
 
-      <div class="col-md-6">
+      <div class="col-md-3">
         <h3>Tables</h3>
 
         <div class="btn-group-vertical btn-group-lg">
           {{#each table in controller}}
-            <button type="button" class="btn btn-info btn-large">
-              {{#link-to "table" table}}{{table.number}}{{/link-to}}
-            </button>
+            {{#link-to "table" table class="btn btn-info"}}{{table.number}}{{/link-to}}
+            <br>
           {{/each}}
         </div>
         <br>
         <br>
 
         {{input type="text" id="new-table" placeholder="Add a new table" value=newNumber action="createTable"}}
+        <br>
+        <br>
+        <br>
+
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-9">
         {{outlet}}
       </div>
 
@@ -50,26 +53,40 @@
 
   <script type="text/x-handlebars" id="table">
 
-      <div class="col-md-6">
-        <h3>Table {{number}}</h3>
-      </div>
+    <div class="col-md-4">
+      <h3>Table {{number}}</h3>
 
-      {{#link-to "selections"}}Place an order{{/link-to}}
+      <ul class="list-unstyled">
+        {{#each selection in model.selections}}
+          <li>{{selection.title}}.....${{selection.price}}</li>
+        {{/each}}
+      </ul>
+      <br>
 
-      <div class="col-md-6">
-        {{outlet}}
-      </div>
+      <div>Total:  ${{selectionTotal}}</div>
+
+      <br>
+      <p>{{#link-to "selections" class="btn btn-warning"}}View Choices{{/link-to}}</p>
+    </div>
+
+    <div class="col-md-8">
+      {{outlet}}
+    </div>
+
 
   </script>
 
 
   <script type="text/x-handlebars" id="selections">
-    <h3>Selections</h3>
+    <h3>Place order for table {{controllers.table.number}}</h3>
 
-    <ul>
+    <ul class="list-unstyled">
       {{#each selection in controller}}
-        <li>
-          <label>{{title}}</label>
+
+          <button {{action "orderSelection" selection}} type="button" class="btn btn-success">
+            {{selection.title}}
+          </button>
+
         </li>
       {{/each}}
     </ul>
@@ -87,6 +104,8 @@
   <script src="js/models/table.js"></script>
   <script src="js/models/selection.js"></script>
   <script src="js/controllers/tables_controller.js"></script>
+  <script src="js/controllers/table_controller.js"></script>
+  <script src="js/controllers/selections_controller.js"></script>
   <!-- to activate the test runner, add the "?test" query string parameter -->
   <script src="tests/runner.js"></script>
 

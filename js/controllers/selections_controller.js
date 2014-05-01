@@ -1,9 +1,12 @@
 Restaurants.SelectionsController = Ember.ArrayController.extend({
-  selectionTotal: function(){
-    return this.get('model.sum');
-  }.property('@each.price')
+  needs: "table",
+  table: Ember.computed.alias("controllers.table"),
+
+  actions: {
+    orderSelection: function(selection){
+      var table = this.get('table').get('model');
+      table.get('selections').pushObject(selection);
+    }
+  }
 });
 
-
-//is "sum" viable?  would need to get total of selected selections for a table
-//in template, would need to include <div>Total: {{selectionTotal}}</div>
